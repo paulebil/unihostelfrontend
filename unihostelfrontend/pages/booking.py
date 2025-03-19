@@ -7,31 +7,31 @@ def booking() -> rx.Component:
     return base_template(
         content=rx.container(
             rx.heading("My Bookings", size="7"),
-            rx.table_container(
-                rx.table(
-                    rx.thead(
-                        rx.tr(
-                            rx.th("Hostel Name"),
-                            rx.th("Room Type"),
-                            rx.th("Check-In Date"),
-                            rx.th("Check-Out Date"),
-                        )
-                    ),
-                    rx.tbody(
-                        rx.tr(
-                            rx.td("UniHostel A"),
-                            rx.td("Single Room"),
-                            rx.td("2023-11-01"),
-                            rx.td("2023-12-01"),
-                        ),
-                        rx.tr(
-                            rx.td("UniHostel B"),
-                            rx.td("Shared Room"),
-                            rx.td("2023-10-15"),
-                            rx.td("2023-11-15"),
-                        ),
+            rx.table.root(
+                rx.table.header(
+                    rx.table.row(
+                        rx.table.column_header_cell("Hostel Name"),
+                        rx.table.column_header_cell("Room Type"),
+                        rx.table.column_header_cell("Check-In Date"),
+                        rx.table.column_header_cell("Check-Out Date"),
                     ),
                 ),
+                rx.table.body(
+                    rx.table.row(
+                        rx.table.cell("UniHostel A"),
+                        rx.table.cell("Single Room"),
+                        rx.table.cell("2023-11-01"),
+                        rx.table.cell("2023-12-01"),
+                    ),
+                    rx.table.row(
+                        rx.table.cell("UniHostel B"),
+                        rx.table.cell("Shared Room"),
+                        rx.table.cell("2023-10-15"),
+                        rx.table.cell("2023-11-15"),
+                    ),
+                ),
+                variant="surface",
+                size="3",
                 width="100%",
             ),
             spacing="4",

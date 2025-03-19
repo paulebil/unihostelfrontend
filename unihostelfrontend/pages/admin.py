@@ -7,35 +7,32 @@ def admin_users() -> rx.Component:
     return base_template(
         content=rx.container(
             rx.heading("User Management", size="7"),
-            rx.box(  # Replaced rx.table_container with rx.box
-                rx.table(
-                    rx.thead(
-                        rx.tr(
-                            rx.th("User ID"),
-                            rx.th("Name"),
-                            rx.th("Role"),
-                            rx.th("Status"),
-                        )
-                    ),
-                    rx.tbody(
-                        rx.tr(
-                            rx.td("1"),
-                            rx.td("John Doe"),
-                            rx.td("Student"),
-                            rx.td("Active"),
-                        ),
-                        rx.tr(
-                            rx.td("2"),
-                            rx.td("Jane Smith"),
-                            rx.td("Custodian"),
-                            rx.td("Inactive"),
-                        ),
+            rx.table.root(
+                rx.table.header(
+                    rx.table.row(
+                        rx.table.column_header_cell("User ID"),
+                        rx.table.column_header_cell("Name"),
+                        rx.table.column_header_cell("Role"),
+                        rx.table.column_header_cell("Status"),
                     ),
                 ),
-                width="100%",  # Ensure the box spans the full width
-                border="1px solid #e2e8f0",  # Optional: Add a border for better visibility
-                padding="1rem",  # Optional: Add padding for spacing
-                overflow_x="auto",  # Enable horizontal scrolling for small screens
+                rx.table.body(
+                    rx.table.row(
+                        rx.table.cell("1"),
+                        rx.table.cell("John Doe"),
+                        rx.table.cell("Student"),
+                        rx.table.cell("Active"),
+                    ),
+                    rx.table.row(
+                        rx.table.cell("2"),
+                        rx.table.cell("Jane Smith"),
+                        rx.table.cell("Custodian"),
+                        rx.table.cell("Inactive"),
+                    ),
+                ),
+                variant="surface",
+                size="3",
+                width="100%",
             ),
             spacing="4",
             justify="center",
@@ -50,36 +47,33 @@ def admin_hostels() -> rx.Component:
     return base_template(
         content=rx.container(
             rx.heading("Hostel Approval", size="7"),
-            rx.box(  # Use a box to group content for better layout control
-                rx.text("List of pending hostel approvals."),
-                rx.table(
-                    rx.thead(
-                        rx.tr(
-                            rx.th("Hostel Name"),
-                            rx.th("Owner"),
-                            rx.th("Location"),
-                            rx.th("Approval Status"),
-                        )
-                    ),
-                    rx.tbody(
-                        rx.tr(
-                            rx.td("UniHostel A"),
-                            rx.td("John Doe"),
-                            rx.td("City Center"),
-                            rx.td("Pending"),
-                        ),
-                        rx.tr(
-                            rx.td("UniHostel B"),
-                            rx.td("Jane Smith"),
-                            rx.td("Suburb"),
-                            rx.td("Approved"),
-                        ),
+            rx.text("List of pending hostel approvals."),
+            rx.table.root(
+                rx.table.header(
+                    rx.table.row(
+                        rx.table.column_header_cell("Hostel Name"),
+                        rx.table.column_header_cell("Owner"),
+                        rx.table.column_header_cell("Location"),
+                        rx.table.column_header_cell("Approval Status"),
                     ),
                 ),
+                rx.table.body(
+                    rx.table.row(
+                        rx.table.cell("UniHostel A"),
+                        rx.table.cell("John Doe"),
+                        rx.table.cell("City Center"),
+                        rx.table.cell("Pending"),
+                    ),
+                    rx.table.row(
+                        rx.table.cell("UniHostel B"),
+                        rx.table.cell("Jane Smith"),
+                        rx.table.cell("Suburb"),
+                        rx.table.cell("Approved"),
+                    ),
+                ),
+                variant="surface",
+                size="3",
                 width="100%",
-                border="1px solid #e2e8f0",
-                padding="1rem",
-                overflow_x="auto",
             ),
             spacing="4",
             justify="center",
@@ -94,34 +88,120 @@ def admin_reports() -> rx.Component:
     return base_template(
         content=rx.container(
             rx.heading("Reports", size="7"),
-            rx.box(  # Use a box to group content for better layout control
-                rx.text("View booking statistics and revenue insights."),
-                rx.table(
-                    rx.thead(
-                        rx.tr(
-                            rx.th("Metric"),
-                            rx.th("Value"),
-                        )
-                    ),
-                    rx.tbody(
-                        rx.tr(
-                            rx.td("Total Bookings"),
-                            rx.td("150"),
-                        ),
-                        rx.tr(
-                            rx.td("Revenue (USD)"),
-                            rx.td("$30,000"),
-                        ),
+            rx.text("View booking statistics and revenue insights."),
+            rx.table.root(
+                rx.table.header(
+                    rx.table.row(
+                        rx.table.column_header_cell("Metric"),
+                        rx.table.column_header_cell("Value"),
                     ),
                 ),
+                rx.table.body(
+                    rx.table.row(
+                        rx.table.cell("Total Bookings"),
+                        rx.table.cell("150"),
+                    ),
+                    rx.table.row(
+                        rx.table.cell("Revenue (USD)"),
+                        rx.table.cell("$30,000"),
+                    ),
+                ),
+                variant="surface",
+                size="3",
                 width="100%",
-                border="1px solid #e2e8f0",
-                padding="1rem",
-                overflow_x="auto",
             ),
             spacing="4",
             justify="center",
             min_height="85vh",
         ),
         title="Reports",
+    )
+
+
+@rx.page(route="/admin", title="Admin Login")
+def admin_login() -> rx.Component:
+    return base_template(
+        content=rx.flex(
+            rx.card(
+                rx.vstack(
+                    rx.center(
+                        rx.image(
+                            src="/logo.jpg",
+                            width="2.5em",
+                            height="auto",
+                            border_radius="25%",
+                        ),
+                        rx.heading(
+                            "Sign in to your Admin Account",
+                            size="6",
+                            as_="h2",
+                            text_align="center",
+                            width="100%",
+                        ),
+                        direction="column",
+                        spacing="5",
+                        width="100%",
+                    ),
+                    rx.vstack(
+                        rx.text(
+                            "Email address",
+                            size="3",
+                            weight="medium",
+                            text_align="left",
+                            width="100%",
+                        ),
+                        rx.input(
+                            placeholder="unihostel@gmail.com",
+                            type="email",
+                            size="3",
+                            width="100%",
+                        ),
+                        justify="start",
+                        spacing="2",
+                        width="100%",
+                    ),
+                    rx.vstack(
+                        rx.hstack(
+                            rx.text(
+                                "Password",
+                                size="3",
+                                weight="medium",
+                            ),
+                            rx.link(
+                                "Forgot password?",
+                                href="#",
+                                size="3",
+                            ),
+                            justify="between",
+                            width="100%",
+                        ),
+                        rx.input(
+                            placeholder="Enter your password",
+                            type="password",
+                            size="3",
+                            width="100%",
+                        ),
+                        spacing="2",
+                        width="100%",
+                    ),
+                    rx.button("Sign in", size="3", width="100%"),
+                    rx.center(
+                        rx.text("New here?", size="3"),
+                        rx.link("Create Hostel", href="/create", size="3"),
+                        opacity="0.8",
+                        spacing="2",
+                        direction="row",
+                    ),
+                    spacing="6",
+                    width="100%",
+                ),
+                size="4",
+                max_width="28em",
+                width="100%",
+            ),
+            title="Login",
+            spacing="4",
+            justify="center",
+        ),
+
     )

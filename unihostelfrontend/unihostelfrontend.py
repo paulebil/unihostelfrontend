@@ -8,29 +8,40 @@ import reflex as rx
 
 # Importing individual page components from the pages module
 from .pages.index import index
-#from .pages.admin import admin_users, admin_hostels, admin_reports  # Import admin-specific pages
-#from .pages.booking import booking
+from .pages.admin import admin_users, admin_hostels, admin_reports  # Import admin-specific pages
+from .pages.booking import booking
 from .pages.profile import profile
 from .pages.search import search
 from .pages.login import login
 from .pages.signup import signup
+from .pages.createhostel import create_hostel
 
 # Import the global state (AppState) from the states module
 from .states.state import AppState  # Global state for the app
 
 # Initialize the Reflex application
-app = rx.App()  # Do NOT pass the state here
+app = rx.App(
+    theme=rx.theme(
+        appearance="light",
+        has_background=True,
+        radius="large",
+        accent_color="teal",
+    )
+)
 
 # Register pages with the app
 app.add_page(index, route="/", title="Home Page")  # Home page
 app.add_page(login, route="/login", title="Login")  # Login page
 app.add_page(signup, route="/signup", title="Sign Up")  # Signup page
 app.add_page(search, route="/search", title="Search Hostels")  # Search page
-#app.add_page(booking, route="/booking", title="My Bookings")  # Booking page
+app.add_page(booking, route="/booking", title="My Bookings")  # Booking page
 app.add_page(profile, route="/profile", title="Profile")  # Profile page
 
 # Admin pages
-# app.add_page(admin_users, route="/admin/users", title="User Management")
-# app.add_page(admin_hostels, route="/admin/hostels", title="Hostel Approval")
-# app.add_page(admin_reports, route="/admin/reports", title="Reports")
+app.add_page(admin_users, route="/admin/users", title="User Management")
+app.add_page(admin_hostels, route="/admin/hostels", title="Hostel Approval")
+app.add_page(admin_reports, route="/admin/reports", title="Reports")
+
+# Custodian pages
+app.add_page(create_hostel, route="/create", title="Create Hostel")
 
