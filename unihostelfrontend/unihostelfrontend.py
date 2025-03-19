@@ -1,28 +1,36 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
+"""
+UniHostel Frontend Application
+
+This is the main entry point for the Reflex-based UniHostel web application.
+"""
 
 import reflex as rx
 
-from rxconfig import config
-
-
 # Importing individual page components from the pages module
 from .pages.index import index
-from .pages.admin import admin
-from .pages.booking import booking
+#from .pages.admin import admin_users, admin_hostels, admin_reports  # Import admin-specific pages
+#from .pages.booking import booking
 from .pages.profile import profile
 from .pages.search import search
+from .pages.login import login
+from .pages.signup import signup
 
-class State(rx.State):
-    """The app state."""
-
-    ...
+# Import the global state (AppState) from the states module
+from .states.state import AppState  # Global state for the app
 
 # Initialize the Reflex application
-app = rx.App()
+app = rx.App()  # Do NOT pass the state here
 
 # Register pages with the app
-app.add_page( index)
-app.add_page( admin)
-app.add_page(booking)
-app.add_page(profile)
-app.add_page(search)
+app.add_page(index, route="/", title="Home Page")  # Home page
+app.add_page(login, route="/login", title="Login")  # Login page
+app.add_page(signup, route="/signup", title="Sign Up")  # Signup page
+app.add_page(search, route="/search", title="Search Hostels")  # Search page
+#app.add_page(booking, route="/booking", title="My Bookings")  # Booking page
+app.add_page(profile, route="/profile", title="Profile")  # Profile page
+
+# Admin pages
+# app.add_page(admin_users, route="/admin/users", title="User Management")
+# app.add_page(admin_hostels, route="/admin/hostels", title="Hostel Approval")
+# app.add_page(admin_reports, route="/admin/reports", title="Reports")
+

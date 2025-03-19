@@ -1,16 +1,24 @@
 import reflex as rx
+from ..templates.template import base_template
 
-from ..templates.template import layout
-
-@rx.page(route="/profile", title="Profile Page")
+@rx.page(route="/profile", title="Profile")
 def profile() -> rx.Component:
-    """Home page for the app."""
-    return layout(
-        rx.container(
-            rx.heading("Welcome to UniHostel", size="9"),
-            rx.text("This is the profile page."),
-            spacing="5",
+    """Profile page for users to manage their account."""
+    return base_template(
+        content=rx.container(
+            rx.heading("Profile", size="7"),
+            rx.form(
+                rx.vstack(
+                    rx.input(placeholder="Full Name", width="100%"),
+                    rx.input(placeholder="Email", width="100%"),
+                    rx.input(placeholder="Phone Number", width="100%"),
+                    rx.button("Save Changes", bg="blue.500", color="white"),
+                ),
+                spacing="4",
+            ),
+            spacing="4",
             justify="center",
             min_height="85vh",
-        )
+        ),
+        title="Profile",
     )
