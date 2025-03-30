@@ -13,6 +13,6 @@ def create_hostel() -> rx.Component:
             justify="center",
             min_height="85vh",
         ),
-        title="Home Page",  # Pass the title dynamically
+        title="Create Hostel",  # Pass the title dynamically
     )
 

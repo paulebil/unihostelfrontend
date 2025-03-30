@@ -11,6 +11,7 @@ def base_template(content: rx.Component, title: str = "UniHostel") -> rx.Compone
             padding_top="8rem",  # Padding to avoid overlap with the fixed navbar
             width="100%",
         ),
+        rx.color_mode.button(position="bottom-left"),
         spacing="0",
         align_items="center",
         min_height="100vh",
