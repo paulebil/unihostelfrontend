@@ -14,7 +14,7 @@ from .pages.profile import profile
 from .pages.search import search
 from .pages.login import login
 from .pages.signup import signup
-from .pages.createhostel import create_hostel
+from .pages.createhostel import create_hostel, my_hostel
 from .pages.rooms import create_room
 
 # Import the global state (AppState) from the states module
@@ -45,4 +45,5 @@ app.add_page(admin_reports, route="/admin/reports", title="Reports")
 
 # Custodian pages
 app.add_page(create_hostel, route="/create", title="Create Hosteltexit")
+app.add_page(my_hostel, route="/create/hostel/my-hostels", title="My Hostels")
 app.add_page(create_room, route="/create/room", title="Create Room")

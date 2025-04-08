@@ -1,50 +1,12 @@
 import reflex as rx
 
-class Hostel(rx.Base):
-    """The hostel model."""
-    name: str
-    location: str
-    image_url: str
+from unihostelfrontend.states.hostel_state import HostelState, Hostel
 
-class State(rx.State):
-    # Initialize with default values
-    hostels: list[Hostel] = [
-        Hostel(
-            name="IDeal Hostel",
-            location="Kataza, Nakawa",
-            image_url="/hostel.jpeg"
-        ),
-        Hostel(
-            name="Student Lodge",
-            location="Makerere, Kampala",
-            image_url="/hostel.jpeg"
-        ),
-        Hostel(
-            name="Campus View",
-            location="Kyambogo, Banda",
-            image_url="/hostel.jpeg"
-        ),
-        Hostel(
-            name="Comfort Zone",
-            location="Ntinda, Kampala",
-            image_url="/hostel.jpeg"
-        ),
-        Hostel(
-            name="Unity Hostel",
-            location="Wandegeya, Central",
-            image_url="/hostel.jpeg"
-        ),
-        Hostel(
-            name="Scholar's Home",
-            location="Bukoto, Nakawa",
-            image_url="/hostel.jpeg"
-        ),
-    ]
 # In your cards.py file:
 def image_card() -> rx.Component:
     return rx.flex(
         rx.foreach(
-            State.hostels,
+            HostelState.hostels,
             show_hostel
         ),
         spacing="4",
@@ -57,28 +19,55 @@ def image_card() -> rx.Component:
         max_width="1400px"  # Maximum width to maintain readability
     )
 
+
 def show_hostel(hostel: Hostel) -> rx.Component:
     return rx.link(
         rx.card(
             rx.vstack(
-                rx.image(
-                    src=hostel.image_url,
-                    width="250px",  # Slightly smaller to fit more cards
-                    height="200px",
-                    border_radius="15px",
-                    object_fit="cover",
+                rx.inset(
+                    rx.image(
+                        src=hostel.image_url,
+                        width="100%",
+                        height="150px",
+                        object_fit="cover",
+                    ),
+                    side="top",
+                    pb="current",
                 ),
-                rx.box(
-                    rx.heading(hostel.name, size="5"),
-                    rx.text(f"Location: {hostel.location}", color="gray"),
-                    padding="2",
+                rx.vstack(
+                    rx.heading(
+                        hostel.name,
+                        size="3",
+                        color=rx.color("accent", 9),
+                        margin_bottom="0.5em",
+                    ),
+                    rx.hstack(
+                        rx.icon("map-pin"),
+                        rx.text(
+                            hostel.location,
+                            color="gray",
+                            font_size="0.9em",
+                        ),
+                        spacing="2",
+                    ),
+                    padding="0",
+                    width="100%",
+                    align_items="start",
                 ),
-                spacing="2",
-                align_items="start",
+                spacing="0",
                 width="100%",
             ),
             size="3",
-            hover_shadow="5",
-            background_color="var(--gray-1)",
-        )
+            hover_shadow="lg",
+            background_color="white",
+            border_radius="xl",
+            width="300px",
+            height="250px",
+            transition="all 0.2s ease-in-out",
+            _hover={
+                "transform": "translateY(-5px)",
+            },
+        ),
+        href=f"/hostel/{hostel.id}",  # Add dynamic link to hostel details page
+        text_decoration="none",
     )

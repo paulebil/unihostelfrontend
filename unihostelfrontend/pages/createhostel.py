@@ -1,78 +1,8 @@
 import reflex as rx
 from ..templates.template import base_template
-from datetime import datetime
 
-
-class HostelState(rx.State):
-    """The hostel state."""
-    name: str = ""
-    image_url: str = ""
-    description: str = ""
-    location: str = ""
-    average_price: int = 0
-    available_rooms: int = 0
-    rules_and_regulations: str = ""
-    amenities: str = ""
-
-    @rx.event
-    async def create_hostel(self, form_data: dict):
-        """Create a new hostel."""
-        # Get the image URL from the upload component
-        image_url = UploadExample.image  # Access the image URL from upload state
-
-        # Add image URL to form data
-        form_data["image_url"] = image_url
-
-        api = ""
-
-        # Make API call to your backend
-        # try:
-        #     response = await api.post("/hostels/", json=form_data)
-        #     if response.status_code == 200:
-        #         return rx.redirect("/create/room", is_external=True)
-        #     else:
-        #         return rx.window_alert("Failed to create hostel")
-        # except Exception as e:
-        #     return rx.window_alert(f"Error: {str(e)}")
-
-        return rx.redirect("/create/room", is_external=False)
-
-
-class UploadExample(rx.State):
-    uploading: bool = False
-    progress: int = 0
-    total_bytes: int = 0
-    image: str = ""  # Store the image URL
-
-    @rx.event
-    async def handle_upload(
-            self, files: list[rx.UploadFile]
-    ):
-        current_file = files[0]  # Get first file since we only allow one
-        upload_data = await current_file.read()
-        outfile = rx.get_upload_dir() / current_file.name
-
-        # Save the file first
-        with outfile.open("wb") as file_object:
-            file_object.write(upload_data)
-
-        # Update the image var with the proper URL
-        self.image = current_file.name
-        self.total_bytes = len(upload_data)
-
-    @rx.event
-    def handle_upload_progress(self, progress: dict):
-        self.uploading = True
-        self.progress = round(progress["progress"] * 100)
-        if self.progress >= 100:
-            self.uploading = False
-
-    @rx.event
-    def cancel_upload(self):
-        self.uploading = False
-        self.image = ""  # Clear the image preview
-        return rx.cancel_upload("upload3")
-
+from unihostelfrontend.states.image_state import UploadExample
+from unihostelfrontend.states.hostel_state import HostelState
 
 def upload_form():
     return rx.vstack(
@@ -322,4 +252,24 @@ def create_hostel() -> rx.Component:
         ),
 
     )
+
+from unihostelfrontend.components.hostel_card import image_card
+
+
+@rx.page(route="/create/hostel/my-hostels", title="My Hostel")
+def my_hostel() -> rx.Component:
+    """List Hostel page."""
+    return base_template(
+        content=rx.container(
+            rx.heading("My Hostels", size="7"),
+            rx.text("List of my Hostels."),
+            image_card(),
+            spacing="4",
+            justify="center",
+            min_height="85vh",
+        ),
+        title="My Hostel",
+    )
+
+
 
