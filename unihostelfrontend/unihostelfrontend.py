@@ -11,7 +11,7 @@ from .pages.index import index
 from .pages.admin import admin_users, admin_hostels, admin_reports  # Import admin-specific pages
 from .pages.booking import booking
 from .pages.profile import profile
-#from .pages.search import search
+from .pages.search import search
 from .pages.login import login
 from .pages.signup import signup
 from .pages.createhostel import create_hostel
@@ -34,7 +34,7 @@ app = rx.App(
 app.add_page(index, route="/", title="Home Page")  # Home page
 app.add_page(login, route="/login", title="Login")  # Login page
 app.add_page(signup, route="/signup", title="Sign Up")  # Signup page
-#app.add_page(search, route="/search", title="Search Hostels")  # Search page
+app.add_page(search, route="/search", title="Search Hostels")  # Search page
 app.add_page(booking, route="/booking", title="My Bookings")  # Booking page
 app.add_page(profile, route="/profile", title="Profile")  # Profile page
 
