@@ -158,25 +158,28 @@ class RoomState(rx.State):
         self.is_loading = True
         self.error = ""
 
-        try:
-            # Get the image URL from the upload component
-            image_url = ImageUploadState.image
+        # try:
+        #     # Get the image URL from the upload component
+        #     image_url = ImageUploadState.image
+        #
+        #     # Add image URL and hostel_id to form data
+        #     form_data["image_url"] = image_url
+        #     form_data["hostel_id"] = self.get_hostel_id
+        #
+        #     # Here you would make your API call
+        #     # api_url = "your_api_endpoint"
+        #     # response = await api.post(api_url, json=form_data)
+        #
+        #     # For now, just redirect
+        #     return rx.redirect(f"/rooms/{self.get_hostel_id}")
+        #
+        # except Exception as e:
+        #     self.error = str(e)
+        # finally:
+        #     self.is_loading = False
+        #
 
-            # Add image URL and hostel_id to form data
-            form_data["image_url"] = image_url
-            form_data["hostel_id"] = self.get_hostel_id
-
-            # Here you would make your API call
-            # api_url = "your_api_endpoint"
-            # response = await api.post(api_url, json=form_data)
-
-            # For now, just redirect
-            return rx.redirect(f"/rooms/{self.get_hostel_id}")
-
-        except Exception as e:
-            self.error = str(e)
-        finally:
-            self.is_loading = False
+        return rx.redirect(f"/view/rooms/1")
 
     @rx.event
     async def view_room_details(self, room_id: int):

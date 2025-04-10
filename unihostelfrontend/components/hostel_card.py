@@ -85,6 +85,8 @@ def show_hostels(hostel: Hostel) -> rx.Component:
         padding="0",
         width="100%",
     )
+
+
 def hostel_image_card() -> rx.Component:
     return rx.flex(
         rx.foreach(

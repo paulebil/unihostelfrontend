@@ -217,5 +217,89 @@ def my_hostel() -> rx.Component:
         title="My Hostel",
     )
 
+from unihostelfrontend.components.cards import render_hostel_detail, render_full_hostel
 
 
+
+@rx.page(route="/hostel/[hostel_id]", on_load=HostelState.on_load)
+# def hostel_detail() -> rx.Component:
+#     """Hostel Detail page."""
+#     return base_template(
+#         content=rx.container(
+#             rx.cond(
+#                 HostelState.current_hostel,
+#                 rx.vstack(
+#                     render_hostel_detail(HostelState.current_hostel),
+#                     rx.vstack(
+#                         rx.heading("Description", size="3"),
+#                         rx.text(
+#                             HostelState.current_hostel.description,
+#                             color="gray",
+#                             font_size="1.1em",
+#                         ),
+#                         rx.heading("Rules and Regulations", size="3"),
+#                         rx.text(
+#                             HostelState.current_hostel.rules_and_regulations,
+#                             color="gray",
+#                             font_size="1.1em",
+#                             white_space="pre-line",
+#                         ),
+#                         rx.heading("Amenities", size="3"),
+#                         rx.text(
+#                             HostelState.current_hostel.amenities,
+#                             color="gray",
+#                             font_size="1.1em",
+#                             white_space="pre-line",
+#                         ),
+#                         rx.heading("Additional Information", size="3"),
+#                         rx.text(
+#                             f"💰 Average Price: UGX {HostelState.current_hostel.average_price:,} per semester",
+#                             color="gray",
+#                             font_size="1.1em",
+#                         ),
+#                         rx.text(
+#                             f"🏠 Available Rooms: {HostelState.current_hostel.available_rooms}",
+#                             color="gray",
+#                             font_size="1.1em",
+#                         ),
+#                         spacing="6",
+#                         width="800px",
+#                         padding="4",
+#                         align_items="center",
+#                     ),
+#                     spacing="6",
+#                     width="100%",
+#                     align_items="center",
+#                 ),
+#                 rx.center(
+#                     rx.spinner(),  # Changed from circular_progress to spinner
+#                     padding_top="10%",
+#                 ),
+#             ),
+#             max_width="1200px",
+#             padding="4",
+#             center_content=True,
+#         ),
+#         title="Hostel Detail"
+#     )
+
+def hostel_detail() -> rx.Component:
+    """Hostel Detail page."""
+    return base_template(
+        content=rx.container(
+            rx.cond(
+                HostelState.current_hostel,
+                # Replace the nested vstack with render_full_hostel
+                render_full_hostel(HostelState.current_hostel),
+                rx.center(
+                    rx.spinner(),
+                    padding_top="10%",
+                ),
+            ),
+            max_width="1200px",
+            padding="4",
+            center_content=True,
+            size="4"  # Add size prop for consistent width [(1)](https://discord.com/channels/1029853095527727165/1239776307298963456)
+        ),
+        title="Hostel Detail"
+    )
