@@ -46,4 +46,4 @@ app.add_page(admin_reports, route="/admin/reports", title="Reports")
 # Custodian pages
 app.add_page(create_hostel, route="/create", title="Create Hosteltexit")
 app.add_page(my_hostel, route="/create/hostel/my-hostels", title="My Hostels")
-app.add_page(create_room, route="/create/room", title="Create Room")
+app.add_page(create_room, route="/create/room[room_hostel_id]", title="Create Room")

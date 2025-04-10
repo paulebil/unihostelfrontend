@@ -4,7 +4,7 @@ import requests
 import reflex as rx
 
 
-class UploadExample(rx.State):
+class ImageUploadState(rx.State):
     uploading: bool = False
     progress: int = 0
     total_bytes: int = 0

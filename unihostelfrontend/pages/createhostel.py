@@ -1,63 +1,9 @@
 import reflex as rx
 from ..templates.template import base_template
 
-from unihostelfrontend.states.image_state import UploadExample
-from unihostelfrontend.states.hostel_state import HostelState
+from unihostelfrontend.components.upload_card import upload_form
 
-def upload_form():
-    return rx.vstack(
-        rx.upload(
-            rx.text(
-                "Drag and drop an image here or click to select"
-            ),
-            id="upload3",
-            border="1px dotted rgb(107,99,246)",
-            padding="5em",
-            max_files=1,
-            accept={
-                "image/png": [".png"],
-                "image/jpeg": [".jpg", ".jpeg"],
-                "image/gif": [".gif"],
-                "image/webp": [".webp"],
-            },
-        ),
-        rx.vstack(
-            rx.foreach(
-                rx.selected_files("upload3"), rx.text
-            )
-        ),
-        # Add image preview with proper URL construction
-        rx.cond(
-            UploadExample.image != "",
-            rx.image(
-                src=rx.get_upload_url(UploadExample.image),  # Construct URL properly
-                width="200px",
-                height="auto",
-            ),
-        ),
-        rx.progress(value=UploadExample.progress, max=100),
-        rx.cond(
-            ~UploadExample.uploading,
-            rx.button(
-                "Upload",
-                on_click=UploadExample.handle_upload(
-                    rx.upload_files(
-                        upload_id="upload3",
-                        on_upload_progress=UploadExample.handle_upload_progress,
-                    ),
-                ),
-            ),
-            rx.button(
-                "Cancel",
-                on_click=UploadExample.cancel_upload,
-            ),
-        ),
-        rx.text(
-            "Total bytes uploaded: ",
-            UploadExample.total_bytes,
-        ),
-        align="center",
-    )
+from unihostelfrontend.states.hostel_state import HostelState
 
 
 @rx.page(route="/create/hostel", title="Create Hostel")

@@ -1,6 +1,6 @@
 import reflex as rx
 
-from unihostelfrontend.states.image_state import UploadExample
+from unihostelfrontend.states.image_state import ImageUploadState
 
 
 class Hostel(rx.Base):
@@ -70,7 +70,7 @@ class HostelState(rx.State):
     async def create_hostel(self, form_data: dict):
         """Create a new hostel."""
         # Get the image URL from the upload component
-        image_url = UploadExample.image  # Access the image URL from upload state
+        image_url = ImageUploadState.image  # Access the image URL from upload state
 
         # Add image URL to form data
         form_data["image_url"] = image_url
