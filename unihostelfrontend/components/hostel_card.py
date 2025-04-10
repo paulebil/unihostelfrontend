@@ -3,7 +3,8 @@ import reflex as rx
 from unihostelfrontend.states.hostel_state import HostelState, Hostel
 
 
-def show_hostel(hostel: Hostel) -> rx.Component:
+
+def show_hostels(hostel: Hostel) -> rx.Component:
     return rx.card(
         rx.vstack(
             rx.grid(
@@ -42,7 +43,6 @@ def show_hostel(hostel: Hostel) -> rx.Component:
                 width="100%",
             ),
             rx.vstack(
-                # Rest of your card content remains the same
                 rx.heading(
                     hostel.name,
                     size="5",
@@ -85,15 +85,15 @@ def show_hostel(hostel: Hostel) -> rx.Component:
         padding="0",
         width="100%",
     )
-def image_card() -> rx.Component:
+def hostel_image_card() -> rx.Component:
     return rx.flex(
         rx.foreach(
             HostelState.hostels,
-            show_hostel
+            show_hostels
         ),
-        direction="column", # Change to column direction [(1)](https://reflex.dev/docs/library/layout/flex)
+        direction="column",
         spacing="4",
-        align="stretch", # Align items to stretch in the column [(1)](https://reflex.dev/docs/library/layout/flex)
+        align="stretch",
         width="100%",
         padding="1em",
         max_width="1400px"

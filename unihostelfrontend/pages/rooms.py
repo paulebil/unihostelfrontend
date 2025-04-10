@@ -165,5 +165,20 @@ def create_room() -> rx.Component:
 
     )
 
+from unihostelfrontend.components.room_card import room_list
 
+
+@rx.page(route="/view/rooms/[room_hostel_id]", title="View Rooms")
+def list_rooms() -> rx.Component:
+    return base_template(
+        content=rx.container(
+            rx.heading("Hostel Rooms", size="7"),
+            rx.text("List of Hostel Rooms."),
+            room_list(),
+            spacing="4",
+            justify="center",
+            min_height="85vh",
+        ),
+        title="My Hostel",
+    )
 

@@ -89,9 +89,6 @@ class HostelState(rx.State):
 
         return rx.redirect("/create/room", is_external=False)
 
-    """The hostel state."""
-    # ... your existing state vars ...
-
     @rx.event
     async def handle_create_rooms(self, hostel_id: int):
         """Handle create rooms button click."""
@@ -100,4 +97,4 @@ class HostelState(rx.State):
     @rx.event
     async def handle_view_rooms(self, hostel_id: int):
         """Handle view rooms button click."""
-        return rx.redirect(f"/rooms/{hostel_id}", is_external=True)
+        return rx.redirect(f"/view/rooms/{hostel_id}", is_external=True)

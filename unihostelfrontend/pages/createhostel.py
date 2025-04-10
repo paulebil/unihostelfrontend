@@ -199,7 +199,7 @@ def create_hostel() -> rx.Component:
 
     )
 
-from unihostelfrontend.components.hostel_card import image_card
+from unihostelfrontend.components.hostel_card import hostel_image_card
 
 
 @rx.page(route="/create/hostel/my-hostels", title="My Hostel")
@@ -209,7 +209,7 @@ def my_hostel() -> rx.Component:
         content=rx.container(
             rx.heading("My Hostels", size="7"),
             rx.text("List of my Hostels."),
-            image_card(),
+            hostel_image_card(),
             spacing="4",
             justify="center",
             min_height="85vh",
