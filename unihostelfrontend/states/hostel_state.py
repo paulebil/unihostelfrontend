@@ -238,7 +238,7 @@ class HostelState(rx.State):
         # except Exception as e:
         #     return rx.window_alert(f"Error: {str(e)}")
 
-        return rx.redirect("/create/room", is_external=False)
+        return rx.redirect("/custodian/view/rooms/[room_hostel_id]", is_external=False)
 
     @rx.event
     async def handle_create_rooms(self, hostel_id: int):
@@ -249,3 +249,8 @@ class HostelState(rx.State):
     async def handle_view_rooms(self, hostel_id: int):
         """Handle view rooms button click."""
         return rx.redirect(f"/view/rooms/{hostel_id}", is_external=False)
+
+    @rx.event
+    async def handle_student_view_rooms(self, hostel_id: int):
+        return rx.redirect(f"/student/view/rooms/{hostel_id}", is_external=False)
+

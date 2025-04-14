@@ -179,10 +179,50 @@ class RoomState(rx.State):
         #     self.is_loading = False
         #
 
-        return rx.redirect(f"/view/rooms/1")
+        return rx.redirect(f"/custodian/view/rooms/1")
 
     @rx.event
     async def view_room_details(self, room_id: int):
         """Handle view room details button click."""
         return rx.redirect(f"/room/{room_id}")
+
+    @rx.event
+    async def go_to_create_room(self):
+        return rx.redirect("/create/room/[room_hostel_id]")
+
+
+class RoomFilterState(rx.State):
+    search_value: str = ""
+    show_bathroom: bool = False
+    show_balcony: bool = False
+    show_single: bool = False
+    show_double: bool = False
+    sort_by: str = ""
+
+    @rx.event
+    def set_search_value(self, value: str):
+        self.search_value = value.lower()
+
+    @rx.event
+    def set_sort_value(self, value: str):
+        self.sort_by = value
+    @rx.event
+    def toggle_bathroom(self, value: bool):
+        self.show_bathroom = value
+
+    @rx.event
+    def toggle_balcony(self, value: bool):
+        self.show_balcony = value
+
+    @rx.event
+    def toggle_single(self, value: bool):
+        self.show_single = value
+
+    @rx.event
+    def toggle_double(self, value: bool):
+        self.show_double = value
+
+    @rx.event
+    def sort_rooms(self, value: str):
+        self.sort_by = value
 

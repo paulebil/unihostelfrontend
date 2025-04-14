@@ -147,6 +147,7 @@ def create_room() -> rx.Component:
                             type="submit",
                             width="100%",
                             size="3",
+
                         ),
                         spacing="6",
                         width="100%",
@@ -161,19 +162,20 @@ def create_room() -> rx.Component:
             title="Create Room",
             spacing="4",
             justify="center",
+            padding_bottom="10em",
         ),
 
     )
 
-from unihostelfrontend.components.room_card import room_list
+from unihostelfrontend.components.room_card import room_list, add_room_button, room_filter
 
 
-@rx.page(route="/view/rooms/[room_hostel_id]", title="View Rooms")
-def list_rooms() -> rx.Component:
+@rx.page(route="/custodian/view/rooms/[room_hostel_id]", title="View Rooms")
+def list_rooms_custodian() -> rx.Component:
     return base_template(
         content=rx.container(
             rx.heading("Hostel Rooms", size="7"),
-            rx.text("List of Hostel Rooms."),
+            add_room_button(),
             room_list(),
             spacing="4",
             justify="center",
@@ -182,3 +184,19 @@ def list_rooms() -> rx.Component:
         title="My Hostel",
     )
 
+
+
+@rx.page(route="/student/view/rooms/[room_hostel_id]", title="View Rooms")
+def list_rooms_student() -> rx.Component:
+    return base_template(
+        content=rx.container(
+            rx.heading("Hostel Rooms", size="7"),
+            rx.text("List of Hostel Rooms."),
+            room_filter(),
+            room_list(),
+            spacing="4",
+            justify="center",
+            min_height="85vh",
+        ),
+        title="My Hostel",
+    )

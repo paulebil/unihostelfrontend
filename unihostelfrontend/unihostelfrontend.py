@@ -47,3 +47,6 @@ app.add_page(admin_reports, route="/admin/reports", title="Reports")
 app.add_page(create_hostel, route="/create", title="Create Hostel")
 app.add_page(my_hostel, route="/create/hostel/my-hostels", title="My Hostels")
 app.add_page(create_room, route="/create/room[room_hostel_id]", title="Create Room")
+
+# student pages
+

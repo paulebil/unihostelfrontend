@@ -1,7 +1,9 @@
 import reflex as rx
-from jeepney.low_level import padding
 
 from unihostelfrontend.states.room_state import RoomState, Room
+
+
+
 def show_room_card(room: Room) -> rx.Component:
     return rx.card(
         rx.vstack(
@@ -15,7 +17,8 @@ def show_room_card(room: Room) -> rx.Component:
                 rx.heading(
                     f"Room {room.room_number}",
                     size="5",
-                    color="rgb(107,99,246)",
+                    color=rx.color("teal", 9),
+                   # color="rgb(107,99,246)",
                 ),
                 rx.text(
                     f"💰 {room.price_per_semester} per semester",
@@ -44,7 +47,7 @@ def show_room_card(room: Room) -> rx.Component:
                 ),
                 rx.button(
                     "Book Now",
-                    color_scheme="grass",
+                    color_scheme="teal",
                     width="100%",
                 ),
                 width="100%",
@@ -79,4 +82,47 @@ def room_list() -> rx.Component:
         ),
         max_width="1200px",
         padding="2em",
+    )
+
+def add_room_button() -> rx.Component:
+    return rx.button(
+        rx.hstack(
+            rx.icon("plus", size=26),
+            rx.text("Add Room", size="4"),
+        ),
+        color_scheme="teal",
+        on_click=RoomState.go_to_create_room,
+    )
+
+
+from unihostelfrontend.states.room_state import RoomFilterState
+
+
+def room_filter() -> rx.Component:
+    return rx.vstack(
+        rx.hstack(
+            rx.input(
+                placeholder="Search rooms...",
+                on_change=RoomFilterState.set_search_value,
+                width="100%",
+            ),
+            rx.select(
+                ["Price (Low to High)", "Price (High to Low)", "Capacity", "Room Type"],
+                placeholder="Sort By",
+                on_change=RoomFilterState.set_sort_value,
+                width="200px",
+            ),
+            width="100%",
+            spacing="4",
+        ),
+        rx.hstack(
+            rx.checkbox("Private Bathroom"),
+            rx.checkbox("Balcony"),
+            rx.checkbox("Single Room"),
+            rx.checkbox("Double Room"),
+            spacing="6",
+        ),
+        width="100%",
+        spacing="4",
+        padding="1em",
     )

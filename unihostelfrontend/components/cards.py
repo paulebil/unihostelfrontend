@@ -366,7 +366,7 @@ def render_action_card(hostel: Hostel) -> rx.Component:
             ),
             rx.button(
                 "View Rooms",
-                on_click=lambda: HostelState.handle_view_rooms(hostel.id),
+                on_click=lambda: HostelState.handle_student_view_rooms(hostel.id),
                 color_scheme="teal",
                 size="3",
                 width="100%"
