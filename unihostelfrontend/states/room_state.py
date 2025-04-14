@@ -149,8 +149,8 @@ class RoomState(rx.State):
     ]
 
     @rx.var
-    def get_hostel_id(self) -> str:
-        return self.router.page.params.get("hostel_id", "")
+    def current_hostel_id(self) -> str:  # Match the route parameter name
+        return self.router.page.params.get("view_hostel_id", "")
 
     @rx.event
     async def create_room(self, form_data: dict):
@@ -188,7 +188,9 @@ class RoomState(rx.State):
 
     @rx.event
     async def go_to_create_room(self):
-        return rx.redirect("/create/room/[room_hostel_id]")
+        hostel_id = self.current_hostel_id
+        print(hostel_id)
+        return rx.redirect(f"/create/room/{hostel_id}")
 
 
 class RoomFilterState(rx.State):

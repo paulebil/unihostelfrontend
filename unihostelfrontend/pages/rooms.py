@@ -170,7 +170,7 @@ def create_room() -> rx.Component:
 from unihostelfrontend.components.room_card import room_list, add_room_button, room_filter
 
 
-@rx.page(route="/custodian/view/rooms/[room_hostel_id]", title="View Rooms")
+@rx.page(route="/custodian/view/rooms/[view_hostel_id]", title="View Rooms")
 def list_rooms_custodian() -> rx.Component:
     return base_template(
         content=rx.container(

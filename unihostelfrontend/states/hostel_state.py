@@ -248,7 +248,7 @@ class HostelState(rx.State):
     @rx.event
     async def handle_view_rooms(self, hostel_id: int):
         """Handle view rooms button click."""
-        return rx.redirect(f"/view/rooms/{hostel_id}", is_external=False)
+        return rx.redirect(f"/custodian/view/rooms/{hostel_id}", is_external=False)
 
     @rx.event
     async def handle_student_view_rooms(self, hostel_id: int):
