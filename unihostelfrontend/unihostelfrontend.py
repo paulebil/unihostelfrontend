@@ -9,7 +9,7 @@ import reflex as rx
 # Importing individual page components from the pages module
 from .pages.index import index
 from .pages.admin import admin_users, admin_hostels, admin_reports  # Import admin-specific pages
-from .pages.booking import booking
+from .pages.booking import book_room
 from .pages.profile import profile
 from .pages.search import search
 from .pages.login import login
@@ -35,7 +35,7 @@ app.add_page(index, route="/", title="Home Page")  # Home page
 app.add_page(login, route="/login", title="Login")  # Login page
 app.add_page(signup, route="/signup", title="Sign Up")  # Signup page
 app.add_page(search, route="/search", title="Search Hostels")  # Search page
-app.add_page(booking, route="/booking", title="My Bookings")  # Booking page
+app.add_page(book_room, route="/book/room/[room_id]", title="My Bookings")  # Booking page
 app.add_page(profile, route="/profile", title="Profile")  # Profile page
 
 # Admin pages

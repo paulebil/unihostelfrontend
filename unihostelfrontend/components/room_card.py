@@ -49,6 +49,7 @@ def show_room_card(room: Room) -> rx.Component:
                     "Book Now",
                     color_scheme="teal",
                     width="100%",
+                    on_click=lambda: rx.redirect(f"/book/room/{room.id}"),
                 ),
                 width="100%",
                 padding="1em",
