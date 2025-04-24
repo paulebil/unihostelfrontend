@@ -12,7 +12,7 @@ def signup() -> rx.Component:
                     rx.vstack(
                         rx.center(
                             rx.image(
-                                src="/logo.jpg",
+                                src="/logo2.png",
                                 width="2.5em",
                                 height="auto",
                                 border_radius="25%",
@@ -77,6 +77,7 @@ def signup() -> rx.Component:
                                 placeholder="Enter your password",
                                 type="password",
                                 name="password",
+                                min_length=8,
                                 required=True,
                                 size="3",
                                 width="100%",
@@ -94,6 +95,7 @@ def signup() -> rx.Component:
                                 placeholder="Confirm your password",
                                 type="password",
                                 name="confirm_password",
+                                min_length=8,
                                 required=True,
                                 size="3",
                                 width="100%",

@@ -16,7 +16,7 @@ def create_hostel() -> rx.Component:
                     rx.vstack(
                         rx.center(
                             rx.image(
-                                src="/logo.jpg",
+                                src="/logo2.png",
                                 width="2.5em",
                                 height="auto",
                                 border_radius="25%",

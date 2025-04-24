@@ -1,5 +1,5 @@
 import reflex as rx
-from ..templates.template import base_template
+from ..templates.template import base_template, admin_base_template
 
 from unihostelfrontend.components.upload_card import upload_form
 
@@ -11,14 +11,14 @@ from unihostelfrontend.states.room_state import RoomState
 @rx.page(route="/create/room/[room_hostel_id]", title="Create Room")
 def create_room() -> rx.Component:
     """Create Room page."""
-    return base_template(
+    return admin_base_template(
         content=rx.flex(
             rx.card(
                 rx.form(
                     rx.vstack(
                         rx.center(
                             rx.image(
-                                src="/logo.jpg",
+                                src="/logo2.png",
                                 width="2.5em",
                                 height="auto",
                                 border_radius="25%",
@@ -172,7 +172,7 @@ from unihostelfrontend.components.room_card import room_list, add_room_button, r
 
 @rx.page(route="/custodian/view/rooms/[view_hostel_id]", title="View Rooms")
 def list_rooms_custodian() -> rx.Component:
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("Hostel Rooms", size="7"),
             add_room_button(),

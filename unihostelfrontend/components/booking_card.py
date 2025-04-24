@@ -8,8 +8,8 @@ def render_student_information_form() -> rx.Component:
     return rx.card(
 
         rx.vstack(
-            # Student Information Section
             rx.heading("Student Information", size="4"),
+
             rx.text(
                 "Full Name",
                 size="3",
@@ -21,6 +21,7 @@ def render_student_information_form() -> rx.Component:
                 placeholder="Full Name",
                 required=True,
                 name="student_name",
+                min_length=2,  # At least 2 characters
                 width="100%",
             ),
 
@@ -33,7 +34,7 @@ def render_student_information_form() -> rx.Component:
             ),
             rx.input(
                 placeholder="Email",
-                type_="email",
+                type="email",  # Use type (not type_) for validation
                 required=True,
                 name="student_email",
                 width="100%",
@@ -50,6 +51,7 @@ def render_student_information_form() -> rx.Component:
                 placeholder="Phone Number",
                 required=True,
                 name="student_phone",
+                pattern=r"^\d{10,15}$",  # 10-15 digits, numbers only
                 width="100%",
             ),
 
@@ -64,6 +66,7 @@ def render_student_information_form() -> rx.Component:
                 placeholder="University",
                 required=True,
                 name="student_university",
+                min_length=2,
                 width="100%",
             ),
 
@@ -78,6 +81,7 @@ def render_student_information_form() -> rx.Component:
                 placeholder="Course",
                 required=True,
                 name="student_course",
+                min_length=2,
                 width="100%",
             ),
 
@@ -110,63 +114,6 @@ def render_home_residence_form() -> rx.Component:
     return rx.card(
 
         rx.vstack(
-            # Home Residence Section
-            rx.heading("Home Residence Information", size="4"),
-
-            rx.text(
-                "Home Address",
-                size="3",
-                weight="medium",
-                text_align="left",
-                width="100%",
-            ),
-            rx.input(
-                placeholder="Home Address",
-                required=True,
-                name="home_address",
-                width="100%",
-            ),
-
-            rx.text(
-                "Home District",
-                size="3",
-                weight="medium",
-                text_align="left",
-                width="100%",
-            ),
-            rx.input(
-                placeholder="District",
-                required=True,
-                name="home_district",
-                width="100%",
-            ),
-
-            rx.text(
-                "Home Country",
-                size="3",
-                weight="medium",
-                text_align="left",
-                width="100%",
-            ),
-            rx.input(
-                placeholder="Country",
-                required=True,
-                name="home_country",
-                width="100%",
-            ),
-            spacing="4",
-            width="100%",
-            padding="4"
-
-        ),
-        width="100%",
-        margin_top="2em",
-    )
-
-def render_nex_of_kin_form() -> rx.Component:
-    return rx.card(
-        rx.vstack(
-            # Next of Kin Section
             rx.heading("Next of Kin Information", size="4"),
 
             rx.text(
@@ -180,6 +127,7 @@ def render_nex_of_kin_form() -> rx.Component:
                 placeholder="Next of Kin Name",
                 required=True,
                 name="next_of_kin_name",
+                min_length=2,  # Example: at least 2 characters
                 width="100%",
             ),
 
@@ -194,6 +142,7 @@ def render_nex_of_kin_form() -> rx.Component:
                 placeholder="Next of Kin Phone",
                 required=True,
                 name="next_of_kin_phone",
+                pattern=r"^\d{10,15}$",  # Example: 10 to 15 digits
                 width="100%",
             ),
 
@@ -211,7 +160,63 @@ def render_nex_of_kin_form() -> rx.Component:
                 name="kin_relationship",
                 width="100%",
             ),
+            spacing="4",
+            width="100%",
+            padding="4"
+        ),
+        width="100%",
+        margin_top="2em",
+    )
 
+def render_nex_of_kin_form() -> rx.Component:
+    return rx.card(
+        rx.vstack(
+            rx.heading("Next of Kin Information", size="4"),
+
+            rx.text(
+                "Next of kin Name",
+                size="3",
+                weight="medium",
+                text_align="left",
+                width="100%",
+            ),
+            rx.input(
+                placeholder="Next of Kin Name",
+                required=True,
+                name="next_of_kin_name",
+                min_length=2,  # Example: at least 2 characters
+                width="100%",
+            ),
+
+            rx.text(
+                "Next of kin Phone Number",
+                size="3",
+                weight="medium",
+                text_align="left",
+                width="100%",
+            ),
+            rx.input(
+                placeholder="Next of Kin Phone",
+                required=True,
+                name="next_of_kin_phone",
+                pattern=r"^\d{10,15}$",  # Example: 10 to 15 digits
+                width="100%",
+            ),
+
+            rx.text(
+                "Next of kin Relationship",
+                size="3",
+                weight="medium",
+                text_align="left",
+                width="100%",
+            ),
+            rx.select(
+                ["Parent", "Guardian", "Sibling", "Spouse", "Other"],
+                placeholder="Relationship with Next of Kin",
+                required=True,
+                name="kin_relationship",
+                width="100%",
+            ),
             spacing="4",
             width="100%",
             padding="4"

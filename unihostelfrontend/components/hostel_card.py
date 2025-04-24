@@ -57,7 +57,7 @@ def show_hostels(hostel: Hostel) -> rx.Component:
                     rx.button(
                         "Create Rooms",
                         size="3",
-                        color_scheme="indigo",
+                        color_scheme="teal",
                         width="50%",
                         on_click=lambda: HostelState.handle_create_rooms(hostel.id),
                     ),

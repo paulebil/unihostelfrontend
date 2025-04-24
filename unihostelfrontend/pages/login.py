@@ -52,6 +52,7 @@ def login() -> rx.Component:
                                 placeholder="Enter your password",
                                 type="password",
                                 name="password",  # Add name
+                                min_length=8,
                                 required=True,  # Add required
                                 size="3",
                                 width="100%",
