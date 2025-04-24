@@ -93,6 +93,7 @@ def upload_form():
         align="center",
     )
 
+from unihostelfrontend.components.side_bar import sidebar
 
 @rx.page(route="/search", title="Search Hostels")
 def search() -> rx.Component:
@@ -105,4 +106,3 @@ def search() -> rx.Component:
     )
 
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

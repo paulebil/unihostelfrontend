@@ -86,9 +86,19 @@ def show_hostels(hostel: Hostel) -> rx.Component:
         width="100%",
     )
 
+def add_hostel_button() -> rx.Component:
+    return rx.button(
+        rx.hstack(
+            rx.icon("plus", size=26),
+            rx.text("Create Hostel", size="4"),
+        ),
+        color_scheme="teal",
+        on_click=HostelState.go_to_create_hostel,
+    )
 
 def hostel_image_card() -> rx.Component:
     return rx.flex(
+        add_hostel_button(),
         rx.foreach(
             HostelState.hostels,
             show_hostels

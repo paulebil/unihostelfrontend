@@ -254,3 +254,8 @@ class HostelState(rx.State):
     async def handle_student_view_rooms(self, hostel_id: int):
         return rx.redirect(f"/student/view/rooms/{hostel_id}", is_external=False)
 
+    @rx.event
+    async def go_to_create_hostel(self):
+
+        return rx.redirect(f"/create/hostel/")
+

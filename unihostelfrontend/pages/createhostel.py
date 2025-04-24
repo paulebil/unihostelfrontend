@@ -1,5 +1,5 @@
 import reflex as rx
-from ..templates.template import base_template
+from ..templates.template import admin_base_template
 
 from unihostelfrontend.components.upload_card import upload_form
 
@@ -9,7 +9,7 @@ from unihostelfrontend.states.hostel_state import HostelState
 @rx.page(route="/create/hostel", title="Create Hostel")
 def create_hostel() -> rx.Component:
     """Create Hostel page."""
-    return base_template(
+    return admin_base_template(
         content=rx.flex(
             rx.card(
                 rx.form(
@@ -205,7 +205,7 @@ from unihostelfrontend.components.hostel_card import hostel_image_card
 @rx.page(route="/create/hostel/my-hostels", title="My Hostel")
 def my_hostel() -> rx.Component:
     """List Hostel page."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("My Hostels", size="7"),
             rx.text("List of my Hostels."),
@@ -224,7 +224,7 @@ from unihostelfrontend.components.cards import render_full_hostel
 @rx.page(route="/hostel/[hostel_id]", on_load=HostelState.on_load)
 def hostel_detail() -> rx.Component:
     """Hostel Detail page."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.cond(
                 HostelState.current_hostel,

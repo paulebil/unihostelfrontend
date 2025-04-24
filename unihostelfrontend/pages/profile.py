@@ -1,10 +1,10 @@
 import reflex as rx
-from ..templates.template import base_template
+from ..templates.template import admin_base_template
 
 @rx.page(route="/profile", title="Profile")
 def profile() -> rx.Component:
     """Profile page for users to manage their account."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("Profile", size="7"),
             rx.form(

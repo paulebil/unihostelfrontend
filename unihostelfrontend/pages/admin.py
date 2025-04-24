@@ -1,10 +1,10 @@
 import reflex as rx
-from ..templates.template import base_template
+from ..templates.template import admin_base_template
 
 @rx.page(route="/admin/users", title="User Management")
 def admin_users() -> rx.Component:
     """Admin page for managing users."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("User Management", size="7"),
             rx.table.root(
@@ -44,7 +44,7 @@ def admin_users() -> rx.Component:
 @rx.page(route="/admin/hostels", title="Hostel Approval")
 def admin_hostels() -> rx.Component:
     """Admin page for approving hostels."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("Hostel Approval", size="7"),
             rx.text("List of pending hostel approvals."),
@@ -85,7 +85,7 @@ def admin_hostels() -> rx.Component:
 @rx.page(route="/admin/reports", title="Reports")
 def admin_reports() -> rx.Component:
     """Admin page for viewing reports."""
-    return base_template(
+    return admin_base_template(
         content=rx.container(
             rx.heading("Reports", size="7"),
             rx.text("View booking statistics and revenue insights."),
@@ -120,7 +120,7 @@ def admin_reports() -> rx.Component:
 
 @rx.page(route="/admin", title="Admin Login")
 def admin_login() -> rx.Component:
-    return base_template(
+    return admin_base_template(
         content=rx.flex(
             rx.card(
                 rx.vstack(

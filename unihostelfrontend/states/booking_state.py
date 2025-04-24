@@ -39,7 +39,8 @@ class BookingState(rx.State):
 
         try:
             # Here you would make your API call to create booking
-            return rx.redirect(f"/student/view/rooms/{self.current_room_id}")
+            #return rx.redirect(f"/student/view/rooms/{self.current_room_id}")
+            return rx.redirect(f"/payment/make")
         except Exception as e:
             self.error = str(e)
         finally:
@@ -62,4 +63,3 @@ class BookingState(rx.State):
                 self.error = "Room not found"
         except Exception as e:
             self.error = str(e)
-
